@@ -1,6 +1,9 @@
 (function () {
     const intro = document.getElementById("brand-intro");
-    if (!intro) return;
+    if (!intro) {
+        document.body.classList.remove("brand-intro-lock");
+        return;
+    }
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const minShow = reduced ? 900 : 2800;
