@@ -1436,6 +1436,13 @@ footer {
   gap: 20px;
 }
 
+.contacts-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 .team-section-content-item-text p {
   line-height: 1.3 !important;
 }
@@ -1448,8 +1455,6 @@ footer {
   margin-top: -20px;
 }
 
-
-
 .services-section-item {
   display: flex;
   justify-content: space-between;
@@ -1457,7 +1462,7 @@ footer {
   width: 100%;
   color: #fff;
   padding: 30px 20px;
-  border: 1px solid #C7B8A9;
+  border: 1px solid #c7b8a9;
   border-radius: 20px;
 }
 
@@ -1479,5 +1484,184 @@ footer {
 .h1-price {
   font-size: 36px;
   font-weight: 600;
-  color: #C7B8A9;
+  color: #c7b8a9;
 }
+
+/* ——— Contacts page form ——— */
+.contacts-form {
+  margin-top: 48px;
+  margin-bottom: 48px;
+  width: 100%;
+  max-width: 1100px;
+}
+
+.contacts-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 28px;
+}
+
+.contacts-map {
+  width: 100%;
+  height: 470px;
+
+  max-width: 1100px;
+  margin-top: 48px;
+  border-radius: 20px;
+}
+
+.contacts-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 0 18px 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 999px;
+  background: transparent;
+  cursor: text;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.contacts-field:focus-within {
+  border-color: rgba(199, 184, 169, 0.85);
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.contacts-field__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.contacts-field__icon svg {
+  display: block;
+}
+
+.contacts-field__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  padding: 14px 0;
+  border: 0;
+  background: transparent;
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: #fff;
+  outline: none;
+}
+
+.contacts-field__input::placeholder {
+  color: #fff;
+}
+
+.contacts-field--with-chevron .contacts-field__input {
+  padding-right: 4px;
+}
+
+.contacts-field__chevron {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  pointer-events: none;
+}
+
+.contacts-field--picker .contacts-field__icon {
+  cursor: default;
+}
+
+.contacts-field--picker .contacts-field__input--picker {
+  position: relative;
+  color-scheme: dark;
+  min-height: 22px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.contacts-field--picker .contacts-field__input--picker::-webkit-datetime-edit,
+.contacts-field--picker .contacts-field__input--picker::-webkit-datetime-edit-fields-wrapper,
+.contacts-field--picker .contacts-field__input--picker::-webkit-datetime-edit-text,
+.contacts-field--picker .contacts-field__input--picker::-webkit-datetime-edit-month-field,
+.contacts-field--picker .contacts-field__input--picker::-webkit-datetime-edit-day-field,
+.contacts-field--picker .contacts-field__input--picker::-webkit-datetime-edit-year-field,
+.contacts-field--picker .contacts-field__input--picker::-webkit-datetime-edit-hour-field,
+.contacts-field--picker .contacts-field__input--picker::-webkit-datetime-edit-minute-field,
+.contacts-field--picker .contacts-field__input--picker::-webkit-datetime-edit-ampm-field {
+  color: #fff;
+}
+
+/* Blink/WebKit: приховуємо системну іконку — лишається ваш шеврон + showPicker */
+.contacts-field--picker .contacts-field__input--picker::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.contacts-field--picker .contacts-field__input--picker::-webkit-clear-button {
+  display: none;
+}
+
+.contacts-form-submit {
+  display: block;
+  width: 100%;
+  max-width: 1100px;
+  margin-top: 28px;
+  padding: 16px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 999px;
+  background: transparent;
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.95);
+  cursor: pointer;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.contacts-form-submit:hover {
+  border-color: rgba(199, 184, 169, 0.85);
+  background-color: rgba(199, 184, 169, 0.12);
+  color: #fff;
+}
+
+.contacts-form-submit:focus-visible {
+  outline: 2px solid #c7b8a9;
+  outline-offset: 4px;
+}
+
+@media (max-width: 720px) {
+  .contacts-form-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.about-section-images {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.about-section {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  gap: 30px;
+}
+
+.p-text-header {
+  font-size: 20px;
+  font-weight: 600;
+}
+
