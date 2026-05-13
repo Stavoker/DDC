@@ -18,28 +18,39 @@
 <body>
 
 
-    <header>
+    <header class="site-header">
         <a class="header-logo" href="./index.html" aria-label="На головну">
-            <img src="./img/ddc-logo.png" alt="">
+            <img class="header-logo-image" src="./img/ddc-logo.png" alt="">
+            <span class="header-logo-wordmark" aria-hidden="true">
+                <span class="header-logo-ddc">DDC</span>
+                <span class="header-logo-sub">DZYUBA DENTAL CLINIC</span>
+            </span>
         </a>
-        <div class="links-header">
-            <a href="./index.html">Головна</a>
-            <a href="./service.html">Послуги</a>
-            <a href="./team.html">Працівники</a>
-            <a href="./about.html">Про нас</a>
-            <a href="./contacts.html">Контактна інформація</a>
-        </div>
-
-        <div class="tel-header">
-            <a href="tel:+38 (098)-001-01-55">+38 (098)-001-01-55</a>
-            <img src="./img/icon-phone.png" alt="phone">
-        </div>
-
-        <div class="line-hdr"></div>
-
-        <div class="socials-hdr">
-            <img src="./img/icon-fb.png" alt="facebook">
-            <img src="./img/icon-insta.png" alt="instagram">
+        <button type="button" class="header-nav-toggle" aria-expanded="false" aria-controls="site-header-bar"
+            aria-label="Меню">
+            <span class="header-nav-toggle-inner" aria-hidden="true">
+                <span class="header-nav-toggle-bar"></span>
+                <span class="header-nav-toggle-bar"></span>
+                <span class="header-nav-toggle-bar"></span>
+            </span>
+        </button>
+        <div class="site-header-bar" id="site-header-bar">
+            <nav class="links-header" aria-label="Головна навігація">
+                <a href="./index.html">Головна</a>
+                <a href="./service.html">Послуги</a>
+                <a href="./team.html">Працівники</a>
+                <a href="./about.html">Про нас</a>
+                <a href="./contacts.html">Контактна інформація</a>
+            </nav>
+            <div class="tel-header">
+                <a href="tel:+38 (098)-001-01-55">+38 (098)-001-01-55</a>
+                <img src="./img/icon-phone.png" alt="phone">
+            </div>
+            <div class="line-hdr"></div>
+            <div class="socials-hdr">
+                <img src="./img/icon-fb.png" alt="facebook">
+                <img src="./img/icon-insta.png" alt="instagram">
+            </div>
         </div>
     </header>
 

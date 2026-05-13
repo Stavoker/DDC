@@ -80,6 +80,46 @@
 })();
 
 (function () {
+    const header = document.querySelector(".site-header");
+    const toggle = document.querySelector(".header-nav-toggle");
+    const bar = document.getElementById("site-header-bar");
+    if (!header || !toggle || !bar) return;
+
+    const mq = window.matchMedia("(max-width: 992px)");
+
+    function setOpen(open) {
+        header.classList.toggle("is-nav-open", open);
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        document.body.classList.toggle("nav-drawer-open", open);
+    }
+
+    function closeIfWide() {
+        if (!mq.matches) setOpen(false);
+    }
+
+    toggle.addEventListener("click", function () {
+        setOpen(!header.classList.contains("is-nav-open"));
+    });
+
+    bar.querySelectorAll("a[href]").forEach(function (link) {
+        link.addEventListener("click", function () {
+            setOpen(false);
+        });
+    });
+
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") setOpen(false);
+    });
+
+    if (typeof mq.addEventListener === "function") {
+        mq.addEventListener("change", closeIfWide);
+    } else if (typeof mq.addListener === "function") {
+        mq.addListener(closeIfWide);
+    }
+    window.addEventListener("resize", closeIfWide);
+})();
+
+(function () {
     const faqRoot = document.querySelector(".faq-section-questions");
     if (!faqRoot) return;
 
