@@ -1465,6 +1465,7 @@ footer {
   align-items: center;
   width: 100%;
   height: 325px;
+  box-sizing: border-box;
   background-image: url("./img/team/Banner.png");
   background-size: cover;
   background-position: center;
@@ -1535,6 +1536,12 @@ footer {
   max-width: 236px;
   height: 100%;
   max-height: 48px;
+}
+
+.corner-picture {
+  display: block;
+  width: 100%;
+  max-width: 236px;
 }
 
 .team-section-content-item-text {
@@ -1788,6 +1795,11 @@ footer {
     border-radius: 30px;
   }
 
+  .video-section {
+    height: min(86vh, 650px);
+    margin-bottom: 100px;
+  }
+
   .main-content-team {
     padding-left: 140px;
     padding-right: 140px;
@@ -1947,6 +1959,13 @@ footer {
       visibility 0s linear 0.32s;
   }
 
+  .video-overlay-top p {
+    color: #c7b8a9;
+    font-size: 18px;
+    font-weight: 00;
+    line-height: 1.3;
+  }
+
   .site-header.is-nav-open .site-header-bar {
     transform: translateX(0);
     visibility: visible;
@@ -1976,6 +1995,10 @@ footer {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
 
+  .h1-medium-adv {
+    font-size: 24px;
+  }
+
   .site-header-bar .links-header a {
     font-size: 18px;
   }
@@ -2002,13 +2025,13 @@ footer {
   .main-content,
   footer,
   .our-team-section {
-    padding-left: clamp(16px, 4vw, 40px);
-    padding-right: clamp(16px, 4vw, 40px);
+    padding-left: max(env(safe-area-inset-left, 0px), clamp(20px, 6vw, 52px));
+    padding-right: max(env(safe-area-inset-right, 0px), clamp(20px, 6vw, 52px));
   }
 
   .main-content-team {
-    padding-left: clamp(16px, 4vw, 40px);
-    padding-right: clamp(16px, 4vw, 40px);
+    padding-left: max(env(safe-area-inset-left, 0px), clamp(20px, 6vw, 52px));
+    padding-right: max(env(safe-area-inset-right, 0px), clamp(20px, 6vw, 52px));
   }
 
   .beginning-blog {
@@ -2182,12 +2205,28 @@ footer {
   .services-section-item {
     flex-direction: column;
     align-items: center;
-    text-align: center;
     gap: 28px;
+    padding: 28px clamp(18px, 5vw, 28px);
+    box-sizing: border-box;
   }
 
-  .services-section-item-text {
+  .corner-picture {
+    width: min(360px, 92%);
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .corner-icon {
+    display: block;
+    width: 100%;
     max-width: 100%;
+    height: auto;
+    max-height: 72px;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+    object-position: center;
   }
 
   .team-section-row-list {
@@ -2203,6 +2242,10 @@ footer {
     text-align: center;
   }
 
+  .team-section-content-item-text .h1-medium-adv br {
+    display: none;
+  }
+
   .team-section-content-item-image {
     max-width: min(278px, 88vw);
   }
@@ -2210,6 +2253,9 @@ footer {
   .banner {
     height: min(280px, 42vw);
     min-height: 200px;
+    padding-left: max(env(safe-area-inset-left, 0px), clamp(20px, 6vw, 52px));
+    padding-right: max(env(safe-area-inset-right, 0px), clamp(20px, 6vw, 52px));
+    box-sizing: border-box;
   }
 
   .title-global-section {
@@ -2244,11 +2290,68 @@ footer {
 }
 
 @media (max-width: 600px) {
+  .site-header,
+  .main-content,
+  footer,
+  .our-team-section,
+  .main-content-team {
+    padding-left: max(env(safe-area-inset-left, 0px), clamp(22px, 6.5vw, 44px));
+    padding-right: max(
+      env(safe-area-inset-right, 0px),
+      clamp(22px, 6.5vw, 44px)
+    );
+  }
+
+  .banner {
+    padding-left: max(env(safe-area-inset-left, 0px), clamp(22px, 6.5vw, 44px));
+    padding-right: max(
+      env(safe-area-inset-right, 0px),
+      clamp(22px, 6.5vw, 44px)
+    );
+  }
+
+  .services-section-item {
+    padding: 24px clamp(16px, 5vw, 24px);
+  }
+
+  .team-section-content-item {
+    align-items: stretch;
+    text-align: left;
+  }
+
+  .team-section-content-item-image {
+    align-self: center;
+  }
+
+  .team-section-content-item-text {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .team-section-content-item-text .h1-medium-adv {
+    text-align: center;
+  }
+
+  .corner-picture {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .corner-icon {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: none;
+    margin-left: 0;
+    margin-right: 0;
+    object-fit: contain;
+    object-position: center;
+  }
+
   .p-text {
     font-size: 14px !important;
   }
-
-
 
   .links-header a {
     font-size: 14px;
@@ -2275,7 +2378,7 @@ footer {
   }
 
   .h1-big {
-    font-size: clamp(28px, 7vw, 36px);
+    font-size: 24px;
     margin-top: 24px;
     margin-bottom: 20px;
   }
@@ -2350,14 +2453,14 @@ footer {
   }
 
   .contact-float {
-    width: 72px;
-    height: 72px;
+    width: 84px;
+    height: 84px;
     right: max(12px, env(safe-area-inset-right, 0px));
     bottom: max(16px, env(safe-area-inset-bottom, 0px));
   }
 
   .contact-float-layer--text {
-    font-size: 10px;
+    font-size: 12px;
     padding: 8px;
   }
 
