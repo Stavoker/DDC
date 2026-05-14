@@ -104,6 +104,8 @@
         );
 
         const clientParams = {
+            /* EmailJS часто очікує {{email}} у полі «To» клієнтського шаблону */
+            email: clientBase.to_email,
             to_email: clientBase.to_email,
             user_name: clientBase.user_name,
             user_lastname: clientBase.user_lastname,
