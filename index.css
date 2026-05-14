@@ -1779,6 +1779,88 @@ footer {
   outline-offset: 4px;
 }
 
+.contacts-field--time-slot {
+  cursor: default;
+}
+
+.contacts-field__select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.contacts-field__select:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.contacts-field__select option {
+  color: #1a1a1a;
+  background: #fff;
+}
+
+.contacts-time-loading {
+  width: 100%;
+  max-width: 1100px;
+  margin: 10px auto 0;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.contacts-form-result {
+  display: none;
+  width: 100%;
+  max-width: 1100px;
+  margin-top: 16px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.contacts-form-result.contacts-form-result--visible:not(.contacts-form-result--success):not(
+    .contacts-form-result--error
+  ) {
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.contacts-form-result--visible {
+  display: block;
+}
+
+.contacts-form-result--success {
+  color: #e8f5e9;
+  background: rgba(76, 175, 80, 0.25);
+  border: 1px solid rgba(129, 199, 132, 0.55);
+}
+
+.contacts-form-result--error {
+  color: #ffebee;
+  background: rgba(244, 67, 54, 0.2);
+  border: 1px solid rgba(239, 154, 154, 0.55);
+}
+
+.contacts-form-result--fade {
+  animation: contactsFormResultFade 0.75s ease;
+}
+
+@keyframes contactsFormResultFade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* =====================================================================
    Адаптивність: лише max-width (великі екрани — базові правила без змін)
    Планшет / телефон: хедер як на макеті (DDC + гамбургер, виклез меню)

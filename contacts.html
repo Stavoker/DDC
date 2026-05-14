@@ -78,11 +78,8 @@
     <main>
 
         <div class="banner" style="background-image: url('./img/contacts/Banner.png');">
-            <h1 class="h1-big-xl">Послуги</h1>
-            <a class="btn-consultation" href="./contacts.html">
-                <img src="./img/icon-reserv.png" alt="">
-                <p class="p-22">ЗАПИСАТИСЯ НА КОНСУЛЬАТІЮ</p>
-            </a>
+            <h1 class="h1-big-xl">Записатися На Прийом</h1>
+            
         </div>
 
         <div class="main-content">
@@ -94,7 +91,7 @@
 
 
             <div class="contacts-form-container">
-                <form class="contacts-form" action="#" method="post">
+                <form id="booking-form" class="contacts-form" action="#" method="post" novalidate>
                     <div class="contacts-form-grid">
                         <label class="contacts-field">
                             <span class="contacts-field__icon" aria-hidden="true">
@@ -105,8 +102,8 @@
                                     <path d="M6 20v-1a6 6 0 0 1 12 0v1" />
                                 </svg>
                             </span>
-                            <input class="contacts-field__input" type="text" name="firstName" placeholder="Ім'я"
-                                autocomplete="given-name">
+                            <input class="contacts-field__input" type="text" name="user_name" placeholder="Ім'я"
+                                autocomplete="given-name" required>
                         </label>
                         <label class="contacts-field">
                             <span class="contacts-field__icon" aria-hidden="true">
@@ -117,8 +114,8 @@
                                     <path d="M6 20v-1a6 6 0 0 1 12 0v1" />
                                 </svg>
                             </span>
-                            <input class="contacts-field__input" type="text" name="lastName" placeholder="Прізвище"
-                                autocomplete="family-name">
+                            <input class="contacts-field__input" type="text" name="user_lastname" placeholder="Прізвище"
+                                autocomplete="family-name" required>
                         </label>
                         <label class="contacts-field">
                             <span class="contacts-field__icon" aria-hidden="true">
@@ -129,8 +126,8 @@
                                     <path d="M3 7l9 6 9-6" />
                                 </svg>
                             </span>
-                            <input class="contacts-field__input" type="email" name="email" placeholder="Email"
-                                autocomplete="email">
+                            <input class="contacts-field__input" type="email" name="user_email" placeholder="Email"
+                                autocomplete="email" required>
                         </label>
                         <label class="contacts-field">
                             <span class="contacts-field__icon" aria-hidden="true">
@@ -141,10 +138,10 @@
                                         d="M22 16.9v2a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h2a2 2 0 0 1 2 1.72c.12.86.37 1.7.72 2.49a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.79.35 1.63.6 2.49.72A2 2 0 0 1 22 16.9z" />
                                 </svg>
                             </span>
-                            <input class="contacts-field__input" type="tel" name="phone" placeholder="Телефон"
-                                autocomplete="tel">
+                            <input class="contacts-field__input" type="tel" name="user_phone" placeholder="Телефон"
+                                autocomplete="tel" required>
                         </label>
-                        <label class="contacts-field contacts-field--with-chevron contacts-field--picker">
+                        <label class="contacts-field contacts-field--with-chevron contacts-field--picker contacts-field--date-picker">
                             <span class="contacts-field__icon" aria-hidden="true">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -154,7 +151,7 @@
                                 </svg>
                             </span>
                             <input class="contacts-field__input contacts-field__input--picker" type="date"
-                                name="visitDate" aria-label="Дата візиту">
+                                name="appointment_date" aria-label="Дата візиту" required>
                             <span class="contacts-field__chevron" aria-hidden="true">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -163,7 +160,7 @@
                                 </svg>
                             </span>
                         </label>
-                        <label class="contacts-field contacts-field--with-chevron contacts-field--picker">
+                        <div class="contacts-field contacts-field--time-slot">
                             <span class="contacts-field__icon" aria-hidden="true">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -172,8 +169,10 @@
                                     <path d="M12 7v5l3 2" />
                                 </svg>
                             </span>
-                            <input class="contacts-field__input contacts-field__input--picker" type="time"
-                                name="visitTime" aria-label="Час візиту">
+                            <select class="contacts-field__input contacts-field__select" name="appointment_time"
+                                id="appointment_time" aria-label="Час візиту" required disabled>
+                                <option value="">Спочатку оберіть дату</option>
+                            </select>
                             <span class="contacts-field__chevron" aria-hidden="true">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -181,14 +180,12 @@
                                     <path d="M6 9l6 6 6-6" />
                                 </svg>
                             </span>
-                        </label>
+                        </div>
                     </div>
-
+                    <p id="time-loading" class="contacts-time-loading" hidden>Завантажуємо доступні години…</p>
+                    <p id="form-result" class="contacts-form-result" role="status" aria-live="polite"></p>
+                    <button type="submit" id="booking-form-submit" class="contacts-form-submit">Записатися</button>
                 </form>
-                <a class="btn-consultation" href="./contacts.html">
-                    <img src="./img/icon-reserv.png" alt="">
-                    <p class="p-22">ЗАПИСАТИСЯ</p>
-                </a>
 
                 <iframe
                     title="Карта: DZYUBA DENTAL CLINIC, Гостомель, вул. Центральна 1б"
@@ -257,22 +254,17 @@
     </a>
 
     <script src="./index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
-        (function () {
-            function openPicker(input) {
-                if (input && typeof input.showPicker === "function") {
-                    try {
-                        input.showPicker();
-                    } catch (_) { /* strict user-activation environments */ }
-                }
-            }
-            document.querySelectorAll(".contacts-field--picker input").forEach(function (input) {
-                input.addEventListener("click", function () {
-                    openPicker(input);
-                });
-            });
-        })();
+        window.DDC_BOOKING_CONFIG = {
+            /* Базовий URL API без завершального слешу, напр. https://dental-server-cdv4.onrender.com */
+            serverUrl: "",
+            /* Другий шаблон EmailJS — лист-підтвердження на email клієнта (у шаблоні To = {{to_email}}) */
+            emailClientTemplateId: "",
+            /* За потреби: emailJsPublicKey, emailServiceId, emailTemplateId, notificationEmail */
+        };
     </script>
+    <script src="./email.js"></script>
 
 </body>
 
