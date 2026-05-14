@@ -1,0 +1,70 @@
+<!--
+  Лист клініці — чорний акцент, білий картка, сірий фон. EmailJS: To = {{to_email}}
+  Змінні: time, user_name, user_lastname, user_phone, user_email, appointment_date, appointment_time, message, start_datetime, end_datetime
+-->
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Заявка DDC</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f6f9fb;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#f6f9fb;padding:20px 12px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="640" cellspacing="0" cellpadding="0" style="max-width:640px;width:100%;font-family:'Segoe UI',Tahoma,sans-serif;font-size:15px;color:#222222;">
+          <tr>
+            <td style="background-color:#000000;color:#ffffff;padding:22px 30px;border-radius:10px 10px 0 0;">
+              <img src="https://ddc-tau.vercel.app/img/ddc-logo.png" width="180" height="auto" alt="DDC" style="display:block;max-height:52px;width:auto;border:0;">
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#ffffff;padding:26px 30px;box-shadow:0 4px 16px rgba(0,0,0,0.06);border-radius:0 0 10px 10px;">
+              <p style="margin:0;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#000000;">Сайт · нова заявка</p>
+              <h1 style="margin:10px 0 8px 0;font-size:20px;font-weight:700;color:#222222;">Запис з форми</h1>
+              <p style="margin:0 0 20px 0;font-size:13px;color:#555555;">{{time}}</p>
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="font-size:15px;line-height:1.6;">
+                <tr>
+                  <td style="padding:8px 0;border-bottom:1px solid #eeeeee;width:110px;color:#666666;"><strong>Пацієнт</strong></td>
+                  <td style="padding:8px 0;border-bottom:1px solid #eeeeee;color:#222222;">{{user_name}} {{user_lastname}}</td>
+                </tr>
+                <tr>
+                  <td style="padding:8px 0;border-bottom:1px solid #eeeeee;color:#666666;"><strong>Телефон</strong></td>
+                  <td style="padding:8px 0;border-bottom:1px solid #eeeeee;"><a href="tel:{{user_phone}}" style="color:#000000;text-decoration:none;">{{user_phone}}</a></td>
+                </tr>
+                <tr>
+                  <td style="padding:8px 0;border-bottom:1px solid #eeeeee;color:#666666;"><strong>Email</strong></td>
+                  <td style="padding:8px 0;border-bottom:1px solid #eeeeee;"><a href="mailto:{{user_email}}" style="color:#000000;text-decoration:none;">{{user_email}}</a></td>
+                </tr>
+                <tr>
+                  <td style="padding:8px 0;border-bottom:1px solid #eeeeee;color:#666666;"><strong>Дата</strong></td>
+                  <td style="padding:8px 0;border-bottom:1px solid #eeeeee;">{{appointment_date}}</td>
+                </tr>
+                <tr>
+                  <td style="padding:8px 0;color:#666666;"><strong>Час</strong></td>
+                  <td style="padding:8px 0;">{{appointment_time}}</td>
+                </tr>
+              </table>
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-top:22px;background-color:#eeeeee;padding:18px;border-left:4px solid #000000;border-radius:6px;">
+                <tr>
+                  <td>
+                    <p style="margin:0 0 8px 0;font-size:13px;font-weight:600;color:#000000;text-transform:uppercase;letter-spacing:0.06em;">Текст / CRM</p>
+                    <div style="font-size:13px;line-height:1.5;color:#222222;white-space:pre-wrap;word-wrap:break-word;font-family:Consolas,'Segoe UI Mono',monospace;">{{message}}</div>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:12px 0 0 0;font-size:11px;color:#999999;">UTC: {{start_datetime}} — {{end_datetime}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align:center;font-size:12px;color:#666666;padding:14px 16px;">
+              <p style="margin:0;">DZYUBA DENTAL CLINIC · DDC · внутрішнє повідомлення</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

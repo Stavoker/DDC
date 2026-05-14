@@ -1,0 +1,73 @@
+<!--
+  Автовідповідь клієнту (чорний акцент / нейтральні сірі). EmailJS: To = {{to_email}}
+  Змінні з email.js: user_name, user_lastname, confirmation_text, appointment_date, appointment_time,
+  user_phone, user_email, clinic_reply_email, calendar_google_url, time
+  Логотип: змініть URL при потребі (зараз ddc-tau.vercel.app).
+-->
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Запис DDC</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f6f9fb;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#f6f9fb;padding:20px 12px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="640" cellspacing="0" cellpadding="0" style="max-width:640px;width:100%;font-family:'Segoe UI',Tahoma,sans-serif;font-size:15px;color:#222222;">
+          <!-- Header -->
+          <tr>
+            <td style="background-color:#000000;color:#ffffff;padding:24px 30px;border-radius:10px 10px 0 0;">
+              <img src="https://ddc-tau.vercel.app/img/ddc-logo.png" width="200" height="auto" alt="DZYUBA DENTAL CLINIC DDC" style="display:block;max-height:58px;width:auto;height:auto;border:0;outline:none;">
+            </td>
+          </tr>
+          <!-- Body -->
+          <tr>
+            <td style="background-color:#ffffff;padding:30px;box-shadow:0 4px 16px rgba(0,0,0,0.06);border-radius:0 0 10px 10px;">
+              <p style="font-size:15px;margin:0 0 12px 0;">Шановний(а)&nbsp;<strong>{{user_name}} {{user_lastname}}</strong>,</p>
+              <p style="font-size:15px;line-height:1.6;margin:0 0 16px 0;">Дякуємо за Ваш запис у <strong>DZYUBA DENTAL CLINIC (DDC)</strong>. Ми отримали Вашу заявку та зв’яжемося з Вами для підтвердження прийому.</p>
+              <p style="font-size:15px;line-height:1.6;margin:0 0 20px 0;color:#333333;">{{confirmation_text}}</p>
+              <!-- Appointment -->
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#eeeeee;padding:20px;border-left:4px solid #000000;border-radius:6px;margin:20px 0;">
+                <tr>
+                  <td>
+                    <h3 style="margin:0 0 12px 0;font-size:16px;color:#000000;font-weight:600;">Деталі прийому</h3>
+                    <p style="margin:6px 0;font-size:15px;color:#222222;"><strong>Дата:</strong> {{appointment_date}}</p>
+                    <p style="margin:6px 0;font-size:15px;color:#222222;"><strong>Час:</strong> {{appointment_time}}</p>
+                    <p style="margin:6px 0;font-size:15px;color:#222222;"><strong>Телефон:</strong> {{user_phone}}</p>
+                    <p style="margin:6px 0;font-size:15px;color:#222222;"><strong>Email:</strong> {{user_email}}</p>
+                  </td>
+                </tr>
+              </table>
+              <!-- Calendar -->
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom:24px;">
+                <tr>
+                  <td align="center">
+                    <a href="{{calendar_google_url}}" target="_blank" rel="noopener noreferrer" style="display:inline-block;background-color:#000000;color:#ffffff !important;padding:12px 20px;border-radius:6px;text-decoration:none;font-weight:500;font-size:15px;">Додати в Google Календар</a>
+                  </td>
+                </tr>
+              </table>
+              <p style="font-size:14px;color:#444444;margin:0 0 16px 0;">Якщо потрібно змінити або скасувати запис — зателефонуйте нам завчасно.</p>
+              <p style="font-size:14px;margin:28px 0 0 0;line-height:1.5;">З повагою,<br><strong>Команда DZYUBA DENTAL CLINIC</strong></p>
+              <!-- Contacts -->
+              <div style="margin-top:24px;font-size:13px;color:#555555;line-height:1.65;">
+                <strong>Телефон:</strong> <a href="tel:+380980010155" style="color:#000000;text-decoration:none;">+38 (098) 001-01-55</a><br>
+                <strong>Email:</strong> <a href="mailto:{{clinic_reply_email}}" style="color:#000000;text-decoration:none;">{{clinic_reply_email}}</a><br>
+                <strong>Адреса:</strong> м. Гостомель, вул. Центральна, 1б, Україна
+              </div>
+            </td>
+          </tr>
+          <!-- Footer -->
+          <tr>
+            <td style="text-align:center;font-size:12px;color:#666666;padding:16px 20px;">
+              <p style="margin:4px 0;">Це автоматичне повідомлення від <strong>DZYUBA DENTAL CLINIC</strong></p>
+              <p style="margin:0;color:#999999;">Отримано: {{time}}</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

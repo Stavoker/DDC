@@ -260,11 +260,15 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
         window.DDC_BOOKING_CONFIG = {
-            /* Базовий URL API без завершального слешу, напр. https://dental-server-cdv4.onrender.com */
-            serverUrl: "",
-            /* Другий шаблон EmailJS — лист-підтвердження на email клієнта (у шаблоні To = {{to_email}}) */
-            emailClientTemplateId: "",
-            /* За потреби: emailJsPublicKey, emailServiceId, emailTemplateId, notificationEmail */
+            /* Публічний базовий URL Node-бекенду (Render тощо), без слеша в кінці.
+               Має відповідати на GET /api/available-times/:date та POST /api/book-appointment.
+               Якщо інший хостинг — підставте свій URL з панелі деплою. */
+            serverUrl: "https://dental-server-cdv4.onrender.com",
+            emailJsPublicKey: "3aE3PRD6FPNUmLPSp",
+            emailServiceId: "service_mu4rk4s",
+            emailTemplateId: "template_n4x054o",
+            emailClientTemplateId: "template_hakuvvf",
+            /* notificationEmail: "пошта@клініки.com", — за потреби; інакше значення з email.js */
         };
     </script>
     <script src="./email.js"></script>

@@ -3,21 +3,22 @@
  *
  * Два листи після успішної відправки:
  * 1) Клініка — шаблон emailTemplateId, у полі To шаблону: {{to_email}} (береться з notificationEmail).
- * 2) Клієнт — шаблон emailClientTemplateId, у полі To: {{to_email}} (адреса з форми).
- *    Якщо emailClientTemplateId порожній — клієнту лист не надсилається.
+ * 2) Клієнт — emailClientTemplateId, To = {{to_email}}; у шаблоні — {{calendar_google_url}} (кнопка Google Calendar). Якщо ID шаблону порожній — лист клієнту не надсилається.
  *
  * Налаштування: window.DDC_BOOKING_CONFIG у contacts.html.
  */
 (function () {
     const defaults = {
         serverUrl: "",
-        emailJsPublicKey: "WCmt2I1LRDK6a063J",
-        emailServiceId: "service_zpiohqr",
-        /** Лист на пошту клініки (дані клієнта з форми). */
-        emailTemplateId: "template_m945fxe",
-        /** Окремий шаблон — підтвердження клієнту на його email. Створіть у EmailJS і вкажіть ID. */
-        emailClientTemplateId: "",
-        notificationEmail: "maksymsikora1@gmail.com",
+        emailJsPublicKey: "3aE3PRD6FPNUmLPSp",
+        emailServiceId: "service_mu4rk4s",
+        /** Лист на пошту клініки (дані клієнта). Має бути в тому ж EmailJS service, що й відправка. */
+        emailTemplateId: "template_n4x054o",
+        /** Auto-reply клієнту (To у шаблоні = {{to_email}}). */
+        emailClientTemplateId: "template_hakuvvf",
+        notificationEmail: "dzyubadc@gmail.com",
+        /** Адреса для поля «місце» в події Google Calendar у листі клієнту */
+        calendarLocation: "м. Гостомель, вул. Центральна, 1б",
     };
 
     const cfg = Object.assign({}, defaults, window.DDC_BOOKING_CONFIG || {});
@@ -25,6 +26,23 @@
 
     function toGoogleCalendarFormat(dateObj) {
         return dateObj.toISOString().replace(/[-:.]/g, "").slice(0, 15) + "Z";
+    }
+
+    /** Посилання «Додати в Google Календар» для листа клієнту (EmailJS {{calendar_google_url}}). */
+    function buildGoogleCalendarTemplateUrl(title, details, location, startUtcCompact, endUtcCompact) {
+        const loc = location || "м. Гостомель, вул. Центральна, 1б";
+        const datesPart = startUtcCompact + "/" + endUtcCompact;
+        return (
+            "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+            "&text=" +
+            encodeURIComponent(title) +
+            "&dates=" +
+            datesPart +
+            "&details=" +
+            encodeURIComponent(details || "") +
+            "&location=" +
+            encodeURIComponent(loc)
+        );
     }
 
     function initEmailJs() {
@@ -49,6 +67,15 @@
             return { clientSent: false };
         }
 
+        const eventTitle = "DDC — візит: " + clientBase.user_name + " " + clientBase.user_lastname;
+        const calendarGoogleUrl = buildGoogleCalendarTemplateUrl(
+            eventTitle,
+            clientBase.confirmation_text || "Запис DZYUBA DENTAL CLINIC",
+            cfg.calendarLocation,
+            clientBase.start_datetime,
+            clientBase.end_datetime,
+        );
+
         const clientParams = {
             to_email: clientBase.to_email,
             user_name: clientBase.user_name,
@@ -61,6 +88,8 @@
             end_datetime: clientBase.end_datetime,
             confirmation_text: clientBase.confirmation_text,
             clinic_reply_email: cfg.notificationEmail,
+            calendar_google_url: calendarGoogleUrl,
+            time: new Date().toLocaleString("uk-UA"),
         };
 
         try {
