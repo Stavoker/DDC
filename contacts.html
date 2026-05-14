@@ -260,10 +260,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
         window.DDC_BOOKING_CONFIG = {
-            /* Публічний базовий URL Node-бекенду (Render тощо), без слеша в кінці.
-               Має відповідати на GET /api/available-times/:date та POST /api/book-appointment.
-               Якщо інший хостинг — підставте свій URL з панелі деплою. */
-            serverUrl: "https://dental-server-cdv4.onrender.com",
+            /* Публічний URL бекенду ddc-server (Render), без слеша в кінці.
+               Після деплою: Render Dashboard → ваш Web Service → скопіюйте URL.
+               Локально: "http://localhost:3000" */
+            serverUrl: "https://ddc-server-u97t.onrender.com",
             emailJsPublicKey: "3aE3PRD6FPNUmLPSp",
             emailServiceId: "service_mu4rk4s",
             emailTemplateId: "template_n4x054o",
