@@ -1476,11 +1476,11 @@ footer {
   width: 100%;
   height: 325px;
   box-sizing: border-box;
-  background-image: url("./img/team/Banner.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
+
 
 .title-global-section {
   display: flex;
