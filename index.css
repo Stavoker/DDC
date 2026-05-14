@@ -1851,6 +1851,54 @@ footer {
   }
 }
 
+/* 15" ноутбуки (≈1366–1536 CSS px): компактніший хедер; менший зазор фото — ПІБ — посада на головній */
+@media (max-width: 1600px) and (min-width: 1201px) {
+  .site-header-bar {
+    margin-left: 36px;
+  }
+
+  .links-header {
+    gap: 22px;
+  }
+
+  .tel-header {
+    margin-left: 24px;
+    gap: 12px;
+  }
+
+  .line-hdr {
+    margin-left: 18px;
+    margin-right: 18px;
+  }
+
+  .socials-hdr {
+    gap: 12px;
+  }
+
+  .our-team-section-images-item {
+    gap: 6px;
+  }
+
+  .our-team-section-images-item .h1-medium-adv {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1.2;
+  }
+
+  .our-team-section-images-item .p-text {
+    line-height: 1.25;
+  }
+
+  /* team.html: двоколонкові картки лікарів */
+  .team-section-content-item {
+    gap: 14px;
+  }
+
+  .team-section-content-item-text {
+    gap: 12px;
+  }
+}
+
 @media (max-width: 1200px) {
   .site-header,
   .main-content,
