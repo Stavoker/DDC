@@ -1888,6 +1888,10 @@ footer {
     gap: 6px;
   }
 
+  .our-team-section-images-item img {
+    height: auto;
+  }
+
   .our-team-section-images-item .h1-medium-adv {
     margin-top: 0;
     margin-bottom: 0;
