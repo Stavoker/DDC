@@ -50,6 +50,27 @@
         emailjs.init({ publicKey: cfg.emailJsPublicKey });
     }
 
+    /** EmailJS інколи повертає 400, якщо у шаблоні є поле, а в об’єкті — undefined або не-рядок. */
+    function normalizeTemplateParams(params) {
+        const out = {};
+        Object.keys(params).forEach(function (key) {
+            const val = params[key];
+            out[key] = val === undefined || val === null ? "" : String(val);
+        });
+        return out;
+    }
+
+    function formatEmailJsError(err) {
+        if (!err) return "";
+        if (typeof err.text === "string" && err.text) return err.text;
+        if (typeof err.message === "string" && err.message) return err.message;
+        try {
+            return JSON.stringify(err);
+        } catch (_) {
+            return String(err);
+        }
+    }
+
     /**
      * Спочатку лист клініці, потім (за наявності шаблону) підтвердження клієнту.
      * @returns {{ clientSent: boolean }}
@@ -59,7 +80,13 @@
             return { clientSent: false };
         }
 
-        await emailjs.send(cfg.emailServiceId, cfg.emailTemplateId, clinicParams);
+        const clinicPayload = normalizeTemplateParams(clinicParams);
+        try {
+            await emailjs.send(cfg.emailServiceId, cfg.emailTemplateId, clinicPayload);
+        } catch (err) {
+            console.error("EmailJS клініка:", formatEmailJsError(err), err);
+            throw err;
+        }
 
         let clientSent = false;
         const clientTpl = (cfg.emailClientTemplateId || "").trim();
@@ -93,10 +120,10 @@
         };
 
         try {
-            await emailjs.send(cfg.emailServiceId, clientTpl, clientParams);
+            await emailjs.send(cfg.emailServiceId, clientTpl, normalizeTemplateParams(clientParams));
             clientSent = true;
         } catch (err) {
-            console.warn("Лист-підтвердження клієнту не відправлено:", err);
+            console.warn("Лист-підтвердження клієнту не відправлено:", formatEmailJsError(err), err);
         }
 
         return { clientSent };
@@ -253,7 +280,10 @@
                 let errText = "Не вдалося створити запис";
                 try {
                     const errorData = await bookingResponse.json();
-                    if (errorData && errorData.error) errText = errorData.error;
+                    if (errorData && errorData.error) errText = String(errorData.error);
+                    if (errorData && errorData.details) {
+                        errText += " — " + String(errorData.details);
+                    }
                 } catch (_) {}
                 throw new Error(errText);
             }
@@ -315,7 +345,8 @@
 
             showSuccess(formatBookingSuccessMessage(clientSent, false));
         } catch (error) {
-            console.error("Booking error:", error);
+            const bookingFailMsg = error instanceof Error ? error.message : String(error);
+            console.error("Booking error:", bookingFailMsg, error);
             try {
                 const clinicParams = {
                     to_email: cfg.notificationEmail,
@@ -367,11 +398,22 @@
                     const { clientSent } = await sendClinicAndClientEmails(clinicParams, clientBase);
                     showSuccess(formatBookingSuccessMessage(clientSent, true));
                 } else {
-                    showError("Сталася помилка. Спробуйте ще раз або зателефонуйте нам.");
+                    showError(
+                        "Запис не створено в CRM: " +
+                            bookingFailMsg +
+                            ". EmailJS не завантажено — спробуйте ще раз або зателефонуйте нам.",
+                    );
                 }
             } catch (emailError) {
-                console.error("Email error:", emailError);
-                showError("Сталася помилка. Спробуйте ще раз або зателефонуйте нам.");
+                const emailMsg = formatEmailJsError(emailError);
+                console.error("Email error:", emailMsg, emailError);
+                showError(
+                    "Запис не збережено в CRM: " +
+                        bookingFailMsg +
+                        ". Лист не надіслано" +
+                        (emailMsg ? ": " + emailMsg : "") +
+                        ". Спробуйте ще раз або зателефонуйте нам.",
+                );
             }
         } finally {
             submitBtn.disabled = false;

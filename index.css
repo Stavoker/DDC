@@ -1565,6 +1565,8 @@ footer {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .team-section-content-item-text p {
@@ -1624,6 +1626,8 @@ footer {
   margin-bottom: 48px;
   width: 100%;
   max-width: 1100px;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .contacts-form-grid {
@@ -1812,13 +1816,23 @@ footer {
   display: none;
   width: 100%;
   max-width: 1100px;
+  min-width: 0;
+  box-sizing: border-box;
   margin-top: 16px;
   padding: 12px 18px;
   border-radius: 12px;
   text-align: center;
   font-size: 15px;
   font-weight: 600;
-  line-height: 1.35;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.contacts-form-result__error,
+.contacts-form-result__ok {
+  display: block;
+  max-width: 100%;
 }
 
 .contacts-form-result.contacts-form-result--visible:not(.contacts-form-result--success):not(
