@@ -234,3 +234,16 @@
     reset();
     requestAnimationFrame(animate);
 })();
+
+(function () {
+    const v = document.querySelector(".video-section video");
+    if (!v) return;
+    v.loop = true;
+    v.muted = true;
+    v.playsInline = true;
+    v.addEventListener("ended", function () {
+        this.currentTime = 0;
+        const p = this.play();
+        if (p && typeof p.catch === "function") p.catch(function () {});
+    });
+})();
