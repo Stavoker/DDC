@@ -1875,6 +1875,15 @@ footer {
     gap: 12px;
   }
 
+  .tel-header img {
+    width: 20px;
+    height: 19px;
+  }
+
+  .h1-medium-adv {
+    font-size: 22px;
+  }
+
   .our-team-section-images-item {
     gap: 6px;
   }
