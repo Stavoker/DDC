@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /email-templates/
+
+Sitemap: https://www.dzyubadentalclinic.com.ua/sitemap.xml

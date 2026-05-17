@@ -457,6 +457,17 @@ a {
   object-fit: cover;
 }
 
+.services-video-video {
+  width: 100%;
+  height: 100%;
+  max-height: 325px;
+  border-radius: 30px;
+  object-fit: cover;
+  object-position: center 30%;
+  margin-bottom: 60px;
+  margin-top: 60px;
+}
+
 .video-overlay-top {
   position: absolute;
   top: 80px;
@@ -1481,7 +1492,6 @@ footer {
   background-repeat: no-repeat;
 }
 
-
 .title-global-section {
   display: flex;
   flex-direction: column;
@@ -1607,11 +1617,22 @@ footer {
   gap: 25px;
 }
 
+.services-section-item-image {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
 .services-section-item-image img {
-  width: 100%;
-  max-width: 420px;
-  height: 100%;
+  display: block;
+  width: auto;
+  max-width: min(420px, 100%);
+  height: auto;
   max-height: 200px;
+  object-fit: contain;
+  object-position: center;
 }
 
 .h1-price {
@@ -1835,9 +1856,9 @@ footer {
   max-width: 100%;
 }
 
-.contacts-form-result.contacts-form-result--visible:not(.contacts-form-result--success):not(
-    .contacts-form-result--error
-  ) {
+.contacts-form-result.contacts-form-result--visible:not(
+    .contacts-form-result--success
+  ):not(.contacts-form-result--error) {
   color: rgba(255, 255, 255, 0.92);
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.22);
@@ -2383,6 +2404,16 @@ footer {
     gap: 28px;
     padding: 28px clamp(18px, 5vw, 28px);
     box-sizing: border-box;
+  }
+
+  .services-section-item-image {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .services-section-item-image img {
+    max-width: min(420px, 92vw);
+    max-height: none;
   }
 
   .corner-picture {
