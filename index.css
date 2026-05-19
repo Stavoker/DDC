@@ -431,6 +431,9 @@ a {
 }
 
 .main-content {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   padding-left: 250px;
   padding-right: 250px;
 }
@@ -904,6 +907,10 @@ a {
   align-items: center;
   gap: 20px;
   margin-top: 60px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .services-section-main {
@@ -1603,10 +1610,14 @@ footer {
   justify-content: space-between;
   gap: 100px;
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   color: #fff;
   padding: 30px 20px;
   border: 1px solid #c7b8a9;
   border-radius: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .services-section-item-text {
@@ -1614,22 +1625,26 @@ footer {
   flex-direction: column;
   width: 100%;
   max-width: 710px;
+  min-width: 0;
   gap: 25px;
 }
 
 .services-section-item-image {
-  flex: 0 0 auto;
+  flex: 0 1 auto;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   min-width: 0;
+  max-width: min(420px, 42%);
+  overflow: hidden;
 }
 
 .services-section-item-image img {
   display: block;
-  width: auto;
-  max-width: min(420px, 100%);
+  width: 100%;
+  max-width: 100%;
   height: auto;
+  min-width: 0;
   max-height: 200px;
   object-fit: contain;
   object-position: center;
@@ -2087,8 +2102,31 @@ footer {
     gap: 40px;
   }
 
+  .main-content {
+    overflow-x: clip;
+  }
+
   .services-section-item {
+    flex-direction: column;
+    align-items: stretch;
     gap: 36px;
+  }
+
+  .services-section-item-image {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 auto;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .services-section-item-image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-width: 0;
+    max-height: min(200px, 52vw);
+    object-fit: contain;
   }
 
   .reviews-section-title-row {
@@ -2400,20 +2438,32 @@ footer {
 
   .services-section-item {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     gap: 28px;
     padding: 28px clamp(18px, 5vw, 28px);
     box-sizing: border-box;
   }
 
+  .services-section-item-text {
+    max-width: none;
+    width: 100%;
+  }
+
   .services-section-item-image {
     width: 100%;
+    max-width: 100%;
+    flex: 0 0 auto;
     justify-content: center;
+    overflow: hidden;
   }
 
   .services-section-item-image img {
-    max-width: min(420px, 92vw);
-    max-height: none;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-width: 0;
+    max-height: min(220px, 56vw);
+    object-fit: contain;
   }
 
   .corner-picture {
@@ -2518,6 +2568,10 @@ footer {
 
   .services-section-item {
     padding: 24px clamp(16px, 5vw, 24px);
+  }
+
+  .services-section-item-image img {
+    max-height: min(200px, 50vw);
   }
 
   .team-section-content-item {
